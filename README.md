@@ -2,7 +2,7 @@
 Small script and set of instructions for periodically sending a dynamic IP address to a static server.
 
 ## Client Setup
-### 1. Set destination in `~/.ssh/config`:
+### 1. Set server destination in `~/.ssh/config`:
 ```
 Host SEND-IP-DESTINATION
         HostName HOSTNAME
@@ -55,7 +55,7 @@ sudo ln -s . /send-ip
 sudo chown -R $(id -un):$(id -gn) /send-ip
 ```
 
-### 2. Configure to `~/.ssh/authorized_keys`
+### 2. Configure `~/.ssh/authorized_keys`:
 This restricts key to only use `rsync`, only have write access, and only to a specific directory.
 ```
 command="rrsync -wo /send-id/logs" ssh-ed25519 AAAA...
