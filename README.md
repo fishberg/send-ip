@@ -20,18 +20,20 @@ git clone https://github.com/fishberg/send-ip.git
 ```
 sudo crontab -e -u $USER
 ```
-Use either:
+Use both:
 ```
 0 * * * * IFNAME="wlx4086cb22d9fb" LOGDIR="$HOME/send-ip/logs" $HOME/send-ip/doit.sh >> $HOME/send-ip/crontab.log 2>&1
-@reboot sleep 300 && IFNAME="wlx4086cb22d9fb" LOGDIR="$HOME/send-ip/logs" $HOME/send-ip/doit.sh >> $HOME/send-ip/crontab.log 2>&1
+@reboot sleep 60 && IFNAME="wlx4086cb22d9fb" LOGDIR="$HOME/send-ip/logs" $HOME/send-ip/doit.sh >> $HOME/send-ip/crontab.log 2>&1
 ```
 where:
 - `0 * * * *` = every hour
 - `*/5 * * * *` = every 5 minutes
 - `* * * * *` = every 1 minute
-- `@reboot sleep 300 && ...` = wait 5 minutes after reboot
+- `@reboot sleep 60 && ...` = wait 1 minute after reboot
 - `IFNAME` is the interface name
 - `LOGDIR` is the path to the `send-ip/logs` folder
+
+This way, it pushes the IP after reboot and every hour on the hour.
 
 ## Server Setup (i.e., server receives IP from client)
 ### 1. Clone repo
